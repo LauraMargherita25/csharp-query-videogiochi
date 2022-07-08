@@ -23,15 +23,23 @@ SELECT COUNT(id) FROM tournaments WHERE tournaments.year = 2015;
 
 -- 6- Selezionare tutti i premi che contengono nella descrizione la parola 'facere' (2)
 
- 
+SELECT * FROM awards WHERE awards.description like '%facere%'
+
 -- 7- Selezionare tutti i videogame che hanno la categoria 2 (FPS) o 6 (RPG), mostrandoli una sola volta (del videogioco vogliamo solo l'ID) (287)
--- 
+
+SELECT COUNT(id) FROM category_videogame WHERE category_id = 2 OR category_id = 6 GROUP BY videogame_id;
+
 -- 8- Selezionare tutte le recensioni con voto compreso tra 2 e 4 (2947)
--- 
+
+SELECT * FROM reviews WHERE reviews.rating >= 2 AND reviews.rating <= 4; 
+ 
 -- 9- Selezionare tutti i dati dei videogiochi rilasciati nell'anno 2020 (46)
--- 
--- 10- Selezionare gli id dei videogame che hanno ricevuto almeno una recensione da stelle, mostrandoli una sola volta (443)
--- 
+
+SELECT * FROM videogames WHERE YEAR(videogames.release_date) = 2020;
+
+-- 10- Selezionare gli id dei videogame che hanno ricevuto almeno una recensione da 5 stelle, mostrandoli una sola volta (443)
+
+SELECT COUNT (rating) as cinque_stelle, videogame_id FROM reviews WHERE reviews.rating = 5 GROUP BY videogame_id
 -- *********** BONUS ***********
 -- 
 -- 11- Selezionare il numero e la media delle recensioni per il videogioco con ID = 412 (review number = 12, avg_rating = 3)
