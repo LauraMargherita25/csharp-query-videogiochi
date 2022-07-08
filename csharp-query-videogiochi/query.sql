@@ -39,14 +39,17 @@ SELECT * FROM videogames WHERE YEAR(videogames.release_date) = 2020;
 
 -- 10- Selezionare gli id dei videogame che hanno ricevuto almeno una recensione da 5 stelle, mostrandoli una sola volta (443)
 
-SELECT COUNT (rating) as cinque_stelle, videogame_id FROM reviews WHERE reviews.rating = 5 GROUP BY videogame_id
+SELECT COUNT (rating) as cinque_stelle, videogame_id FROM reviews WHERE reviews.rating = 5 GROUP BY videogame_id;
+
 -- *********** BONUS ***********
 -- 
 -- 11- Selezionare il numero e la media delle recensioni per il videogioco con ID = 412 (review number = 12, avg_rating = 3)
--- 
+
+SELECT COUNT(videogame_id) AS Nrecensioni412, AVG(rating) AS mediarecensioni FROM reviews WHERE reviews.videogame_id = 412;
+
 -- 12- Selezionare il numero di videogame che la software house con ID = 1 ha rilasciato nel 2018 (13)
--- ```
--- 
+SELECT COUNT(id) AS NVideogame FROM videogames WHERE videogames.software_house_id = 1 AND YEAR(videogames.release_date) = 2018; 
+
 -- ------ Query con group by
 -- 
 -- ```
