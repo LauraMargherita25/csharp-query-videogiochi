@@ -54,19 +54,31 @@ SELECT COUNT(id) AS NVideogame FROM videogames WHERE videogames.software_house_i
 -- 
 -- ```
 -- 1- Contare quante software house ci sono per ogni paese (3)
--- 
+
+SELECT COUNT(id) AS NSoftwereHouse, country FROM software_houses GROUP BY software_houses.country;
+
 -- 2- Contare quante recensioni ha ricevuto ogni videogioco (del videogioco vogliamo solo l'ID) (500)
--- 
+
+SELECT COUNT(id) AS NRecensioni, videogame_id FROM reviews GROUP BY videogame_id ORDER BY videogame_id ASC;
+
 -- 3- Contare quanti videogiochi hanno ciascuna classificazione PEGI (della classificazione PEGI vogliamo solo l'ID) (13)
--- 
+
+SELECT COUNT(id) AS NVideogame, pegi_label_id FROM pegi_label_videogame GROUP BY pegi_label_id ORDER BY pegi_label_id ASC;
+
 -- 4- Mostrare il numero di videogiochi rilasciati ogni anno (11)
--- 
+
+SELECT COUNT(id) AS NVideogame, YEAR(release_date) AS Year from videogames group by YEAR(videogames.release_date);
+
 -- 5- Contare quanti videogiochi sono disponbiili per ciascun device (del device vogliamo solo l'ID) (7)
--- 
+
+SELECT COUNT(id) AS NVideogame, device_videogame.device_id from device_videogame group by device_videogame.device_id ORDER BY device_id ASC;
+
 -- 6- Ordinare i videogame in base alla media delle recensioni (del videogioco vogliamo solo l'ID) (500)
--- ```
+
+SELECT AVG(rating) AS MediaRecensioni, videogame_id from reviews group by videogame_id ORDER BY AVG(rating) ASC; 
+
 -- 
--- ------ Query con join
+-- ------ Query con join ------
 -- 
 -- ```
 -- 1- Selezionare i dati di tutti giocatori che hanno scritto almeno una recensione, mostrandoli una sola volta (996)
